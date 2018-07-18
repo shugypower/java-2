@@ -1,6 +1,3 @@
-class B{
-}
-
 class A{
   B b;
   int x;

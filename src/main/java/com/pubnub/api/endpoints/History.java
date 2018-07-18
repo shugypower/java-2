@@ -103,22 +103,7 @@ public class History extends Endpoint<JsonElement, PNHistoryResult> {
 
 
             if (mapper.getArrayElement(input.body(), 0).isJsonArray()) {
-                for (Iterator<JsonElement> it = mapper.getArrayIterator(mapper.getArrayElement(input.body(), 0)); it
-                        .hasNext();) {
-                    JsonElement historyEntry = it.next();
-                    PNHistoryItemResult.PNHistoryItemResultBuilder historyItem = PNHistoryItemResult.builder();
-                    JsonElement message;
-
-                    if (includeTimetoken != null && includeTimetoken) {
-                        historyItem.timetoken(mapper.elementToLong(historyEntry, "timetoken"));
-                        message = processMessage(mapper.getField(historyEntry, "message"));
-                    } else {
-                        message = processMessage(historyEntry);
-                    }
-
-                    historyItem.entry(message);
-                    messages.add(historyItem.build());
-                }
+                input.body();
             } else {
                 throw PubNubException.builder()
                         .pubnubError(PubNubErrorBuilder.PNERROBJ_HTTP_ERROR)
